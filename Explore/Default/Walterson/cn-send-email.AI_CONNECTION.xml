@@ -1,0 +1,55 @@
+<aetgt:getResponse xmlns:aetgt="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd"
+                   xmlns:types1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd">
+   <types1:Item>
+      <types1:EntryId>BZUuopz4KhPVEQr-gt-1025090-2021-09-22T18:35:31.445Z::conn.xml</types1:EntryId>
+      <types1:Name>cn-send-email-1</types1:Name>
+      <types1:ParentFlowIds>XM3jhBjop81V4Ad-gt-10515516-2021-09-24T20:30:18.791Z::pd.xml</types1:ParentFlowIds>
+      <types1:MimeType>application/xml+connection</types1:MimeType>
+      <types1:Description>Teste</types1:Description>
+      <types1:AppliesTo/>
+      <types1:Tags>.agent:iics-hvar-agent</types1:Tags>
+      <types1:VersionLabel>1.0</types1:VersionLabel>
+      <types1:State>CURRENT</types1:State>
+      <types1:ProcessGroup/>
+      <types1:CreatedBy>walterson.quiais@latampartners-dev.org</types1:CreatedBy>
+      <types1:CreationDate>2021-09-22T18:35:31Z</types1:CreationDate>
+      <types1:ModifiedBy>walterson.quiais@latampartners-dev.org</types1:ModifiedBy>
+      <types1:ModificationDate>2021-09-27T12:26:49Z</types1:ModificationDate>
+      <types1:PublicationStatus>published</types1:PublicationStatus>
+      <types1:PublishedBy>walterson.quiais@latampartners-dev.org</types1:PublishedBy>
+      <types1:PublicationDate>2021-09-27T12:32:54Z</types1:PublicationDate>
+      <types1:PublishedContributionId>project:/rt.connection/cn-send-email-1/cn-send-email-1.conn.xml</types1:PublishedContributionId>
+      <types1:AutosaveExists>false</types1:AutosaveExists>
+      <types1:Entry>
+         <connection xmlns="http://schemas.informatica.com/socrates/data-services/2014/04/avosConnections.xsd"
+                     displayName="cn-send-email"
+                     label="cn-send-email-1"
+                     name="cn-send-email-1">
+            <description>Teste</description>
+            <tags>.agent:iics-hvar-agent</tags>
+            <agent>iics-hvar-agent</agent>
+            <attributes>
+               <attribute encrypted="false"
+                          name="hostName"
+                          value="na1.dm-us.informaticacloud.com:443"/>
+               <attribute encrypted="false"
+                          name="username"
+                          value="walterson.quiais@latampartners-dev.org"/>
+               <attribute encrypted="true" name="password" value=""/>
+            </attributes>
+            <businessConnector xmlns="http://schemas.informatica.com/appmodules/screenflow/2014/04/avosConnectors.xsd"
+                               agentOnly="false"
+                               connectorPath="project:/rt.connector/sc_send_email_1/sc_send_email_1_svcDef.xml"
+                               guid="iTZuQm2M0WQjopiM0crC4L"
+                               name="sc_send_email-1"
+                               supportsConnectionTest="false"
+                               uuid="0de01819-148a-455c-91d7-48c4a20c8ecf">
+               <description/>
+            </businessConnector>
+         </connection>
+      </types1:Entry>
+      <types1:GUID>aBuu5nSrI9mgXfnKST3qQ9</types1:GUID>
+      <types1:DisplayName>cn-send-email</types1:DisplayName>
+   </types1:Item>
+   <types1:CurrentServerDateTime>2022-02-02T20:28:02.004Z</types1:CurrentServerDateTime>
+</aetgt:getResponse>

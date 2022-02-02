@@ -1,0 +1,209 @@
+<aetgt:getResponse xmlns:aetgt="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd"
+                   xmlns:types1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd">
+   <types1:Item>
+      <types1:EntryId>XM3jhBjop81V4Ad-gt-10515516-2021-09-24T20:30:18.791Z::pd.xml</types1:EntryId>
+      <types1:Name>p_send_data_to_gcs_-_Copy_1</types1:Name>
+      <types1:MimeType>application/xml+process</types1:MimeType>
+      <types1:Description>Processo para validar o token e enviar os dados para o GCS.</types1:Description>
+      <types1:AppliesTo/>
+      <types1:Tags>.agent:iics-hvar-agent</types1:Tags>
+      <types1:VersionLabel>1.0</types1:VersionLabel>
+      <types1:State>CURRENT</types1:State>
+      <types1:ProcessGroup/>
+      <types1:CreatedBy>walterson.quiais@latampartners-dev.org</types1:CreatedBy>
+      <types1:CreationDate>2021-09-24T20:30:19Z</types1:CreationDate>
+      <types1:ModifiedBy>walterson.quiais@latampartners-dev.org</types1:ModifiedBy>
+      <types1:ModificationDate>2021-09-27T12:50:59Z</types1:ModificationDate>
+      <types1:PublicationStatus>unpublished</types1:PublicationStatus>
+      <types1:AutosaveExists>false</types1:AutosaveExists>
+      <types1:Entry>
+         <process xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2010/10/avosScreenflow.xsd"
+                  xmlns:tfm="http://schemas.active-endpoints.com/appmodules/screenflow/2021/04/taskflowModel.xsd"
+                  xmlns:list="urn:activevos:spi:list:functions"
+                  displayName="p_send_data_to_gcs - Copy 1"
+                  name="p_send_data_to_gcs_-_Copy_1"
+                  overrideAPIName="false">
+            <parameterSet xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2021/04/taskflowModel.xsd"/>
+            <appliesTo/>
+            <description>Processo para validar o token e enviar os dados para o GCS.</description>
+            <tags>.agent:iics-hvar-agent</tags>
+            <generator>Informatica Process Designer 11</generator>
+            <input>
+               <parameter description=""
+                          name="in_json_send_data"
+                          required="true"
+                          type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </parameter>
+               <parameter description="" name="in_bucket" required="true" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </parameter>
+               <parameter description="" name="in_folder" required="true" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </parameter>
+               <parameter description=""
+                          name="in_file_name"
+                          required="true"
+                          type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </parameter>
+            </input>
+            <output>
+               <field description="" name="out_mensage" type="reference">
+                  <options>
+                     <option name="referenceTo">cn-google-cloud-storage-1:root_gcs</option>
+                     <option name="required">false</option>
+                     <option name="isCopy">true</option>
+                     <option name="guid">3VycHfg7jCmfrIClQi0Ew5</option>
+                  </options>
+               </field>
+            </output>
+            <tempFields>
+               <field description="" name="tmp_send_email" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </field>
+            </tempFields>
+            <notes/>
+            <deployment suspendOnFault="false" tracingLevel="verbose">
+               <targetLocation>iics-hvar-agent</targetLocation>
+               <rest>
+                  <allowedGroups>
+                     <group>Group Service Consume</group>
+                     <group>Admin</group>
+                  </allowedGroups>
+               </rest>
+            </deployment>
+            <flow id="a">
+               <start id="b">
+                  <link id="ktvjj38l" targetId="ktvjj39e"/>
+               </start>
+               <eventContainer id="ktvjj39e">
+                  <service id="ktvjj38k">
+                     <title>Get Token</title>
+                     <serviceName>cn-google-cloud-storage-1:Get Token</serviceName>
+                     <serviceGUID>3VycHfg7jCmfrIClQi0Ew5</serviceGUID>
+                     <serviceInput/>
+                  </service>
+                  <flow id="ktvjj39g">
+                     <container id="ktvjj3bc" type="exclusive">
+                        <title>gcs_return_token_status</title>
+                        <flow id="ktvjj3bf">
+                           <eventContainer id="ktvjj3br">
+                              <service id="ktvjj3bv">
+                                 <title>Post GCS</title>
+                                 <serviceName>cn-google-cloud-storage-1:Post GCS</serviceName>
+                                 <serviceGUID>3VycHfg7jCmfrIClQi0Ew5</serviceGUID>
+                                 <serviceInput>
+                                    <parameter name="Bucket" source="constant">{$input.in_bucket}</parameter>
+                                    <parameter name="Folder" source="constant">{$input.in_folder}</parameter>
+                                    <parameter name="Authorization" source="constant">{$output.gcs_return_token}</parameter>
+                                    <parameter name="Body" source="constant">{$input.in_json_send_data}</parameter>
+                                    <parameter name="Object" source="constant">{$input.in_file_name}</parameter>
+                                 </serviceInput>
+                              </service>
+                              <flow id="ktvjj3bs">
+                                 <container id="ktvjj3ds" type="exclusive">
+                                    <title>return_status_code</title>
+                                    <flow id="ktvjj3dv">
+                                       <assignment id="ktvjj3e9">
+                                          <title>Assignment to out_mensage</title>
+                                          <operation source="field" to="output.out_mensage">output.return_google_cloud_storage</operation>
+                                       </assignment>
+                                       <link id="ktvjj3dw" targetId="ktvjj3ds" type="containerLink"/>
+                                    </flow>
+                                    <flow id="ktvjj3dy">
+                                       <link id="ktvjj3dz" targetId="ktvjj3ds" type="containerLink"/>
+                                    </flow>
+                                    <link id="ktvjj3du" targetId="ktvjj3dv" type="containerLink">
+                                       <condition source="formula">
+                                          <function name="string-equals">
+                                             <arg name="left">{$output.return_status_code}</arg>
+                                             <arg name="right">200</arg>
+                                          </function>
+                                       </condition>
+                                    </link>
+                                    <link id="ktvjj3dx" targetId="ktvjj3dy" type="containerLink"/>
+                                 </container>
+                                 <link id="ktvjj3by" targetId="ktvjj3br" type="containerLink"/>
+                              </flow>
+                              <flow id="ktvjj3bu">
+                                 <service id="ktytjd8a">
+                                    <title>tf_send_emailOperation</title>
+                                    <serviceName>cn-send-email-1:tf_send_emailOperation</serviceName>
+                                    <serviceGUID>aBuu5nSrI9mgXfnKST3qQ9</serviceGUID>
+                                    <serviceInput>
+                                       <parameter name="body" source="field"/>
+                                    </serviceInput>
+                                 </service>
+                                 <link id="ktvjj3bz" targetId="ktvjj3br" type="containerLink"/>
+                              </flow>
+                              <link id="ktvjj3bw" targetId="ktvjj3bs" type="containerLink"/>
+                              <events>
+                                 <catch faultField="faultInfo" id="ktvjj3ag" interrupting="true">
+                                    <link id="ktvjj3bx" targetId="ktvjj3bu" type="containerLink"/>
+                                 </catch>
+                              </events>
+                           </eventContainer>
+                           <link id="ktvjj3bg" targetId="ktvjj3bc" type="containerLink"/>
+                        </flow>
+                        <flow id="ktvjj3bi">
+                           <link id="ktvjj3bj" targetId="ktvjj3bc" type="containerLink"/>
+                        </flow>
+                        <link id="ktvjj3be" targetId="ktvjj3bf" type="containerLink">
+                           <condition source="formula">
+                              <function name="string-equals">
+                                 <arg name="left">{$output.gcs_return_token_status}</arg>
+                                 <arg name="right">200</arg>
+                              </function>
+                           </condition>
+                        </link>
+                        <link id="ktvjj3bh" targetId="ktvjj3bi" type="containerLink"/>
+                     </container>
+                     <link id="ktvjj39h" targetId="ktvjj39e" type="containerLink"/>
+                  </flow>
+                  <flow id="ktvjj39j">
+                     <link id="ktvjj39k" targetId="ktvjj39e" type="containerLink"/>
+                  </flow>
+                  <link id="ktvjj39f" targetId="ktvjj39g" type="containerLink"/>
+                  <link id="ktvjj3a0" targetId="c"/>
+                  <events>
+                     <catch faultField="faultInfo" id="ktvjj39d" interrupting="true">
+                        <link id="ktvjj39i" targetId="ktvjj39j" type="containerLink"/>
+                     </catch>
+                  </events>
+               </eventContainer>
+               <end id="c"/>
+            </flow>
+         </process>
+         <ns1:sample-data-sets xmlns:ns1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/sampleData.xsd">
+            <ns1:SampleData>
+               <ns1:Id>748c1a24-44f9-4b4f-974c-e7e6d115db5f</ns1:Id>
+               <ns1:Name>TesteDoGuizão</ns1:Name>
+               <ns1:CreatedBy>walterson.quiais@latampartners-dev.org</ns1:CreatedBy>
+               <ns1:CreationDate>2021-09-24T20:30:19Z</ns1:CreationDate>
+               <ns1:ModifiedBy>walterson.quiais@latampartners-dev.org</ns1:ModifiedBy>
+               <ns1:ModifiedDate>2021-09-24T20:30:19Z</ns1:ModifiedDate>
+               <ns1:Data format="json">{
+	 "in_json_send_data": "{Teste2}",
+	 "in_bucket": "hvar-informatica-lab",
+	 "in_folder": "DollarQuotation",
+	 "in_file_name": "TesteWalterson.json"
+}</ns1:Data>
+            </ns1:SampleData>
+         </ns1:sample-data-sets>
+      </types1:Entry>
+      <types1:GUID>byPRNlOSVKOfCeuApErrGd</types1:GUID>
+      <types1:DisplayName>p_send_data_to_gcs - Copy 1</types1:DisplayName>
+   </types1:Item>
+   <types1:CurrentServerDateTime>2022-02-02T20:28:02.121Z</types1:CurrentServerDateTime>
+</aetgt:getResponse>

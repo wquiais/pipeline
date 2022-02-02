@@ -1,0 +1,259 @@
+<aetgt:getResponse xmlns:aetgt="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd"
+                   xmlns:types1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd">
+   <types1:Item>
+      <types1:EntryId>sqUlLnzYLnzYLnz-gt-5858119-2021-09-23T16:34:54.304Z::pd.xml</types1:EntryId>
+      <types1:Name>p_send_cotacao_to_gcs</types1:Name>
+      <types1:MimeType>application/xml+process</types1:MimeType>
+      <types1:Description>Processo geral para enviar uma cotação para o GCS.</types1:Description>
+      <types1:AppliesTo/>
+      <types1:Tags>.agent:iics-hvar-agent</types1:Tags>
+      <types1:VersionLabel>1.0</types1:VersionLabel>
+      <types1:State>CURRENT</types1:State>
+      <types1:ProcessGroup/>
+      <types1:CreatedBy>walterson.quiais@latampartners-dev.org</types1:CreatedBy>
+      <types1:CreationDate>2021-09-23T16:34:54Z</types1:CreationDate>
+      <types1:ModifiedBy>walterson.quiais@latampartners-dev.org</types1:ModifiedBy>
+      <types1:ModificationDate>2021-09-24T19:26:33Z</types1:ModificationDate>
+      <types1:PublicationStatus>published</types1:PublicationStatus>
+      <types1:PublishedBy>walterson.quiais@latampartners-dev.org</types1:PublishedBy>
+      <types1:PublicationDate>2021-09-24T19:27:02Z</types1:PublicationDate>
+      <types1:PublishedContributionId>project:/spi.p_send_cotacao_to_gcs/p_send_cotacao_to_gcs.pd.xml</types1:PublishedContributionId>
+      <types1:AutosaveExists>false</types1:AutosaveExists>
+      <types1:Entry>
+         <process xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2010/10/avosScreenflow.xsd"
+                  xmlns:tfm="http://schemas.active-endpoints.com/appmodules/screenflow/2021/04/taskflowModel.xsd"
+                  xmlns:list="urn:activevos:spi:list:functions"
+                  displayName="p_send_cotacao_to_gcs"
+                  name="p_send_cotacao_to_gcs"
+                  overrideAPIName="false">
+            <parameterSet xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2021/04/taskflowModel.xsd"/>
+            <appliesTo/>
+            <description>Processo geral para enviar uma cotação para o GCS.</description>
+            <tags>.agent:iics-hvar-agent</tags>
+            <generator>Informatica Process Designer 11</generator>
+            <input>
+               <parameter description="" name="dt_entrada" required="true" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </parameter>
+            </input>
+            <tempFields>
+               <field description="" name="dt_inicio_corte" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </field>
+               <field description="" name="dt_fim_corte" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </field>
+               <field description="" name="dt_valida" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </field>
+               <field description="" name="dt_futura" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </field>
+               <field description="" name="tmp_dt_contador" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </field>
+            </tempFields>
+            <notes/>
+            <deployment suspendOnFault="false" tracingLevel="none">
+               <targetLocation>iics-hvar-agent</targetLocation>
+               <rest>
+                  <allowedGroups>
+                     <group>Group Service Consume</group>
+                     <group>Admin</group>
+                  </allowedGroups>
+               </rest>
+            </deployment>
+            <flow id="a">
+               <start id="b">
+                  <link id="ktxh4a77" targetId="ktxh4a76"/>
+               </start>
+               <assignment id="ktxh4a76">
+                  <title>Assignment to dt_valida</title>
+                  <operation source="formula" to="temp.dt_valida">
+                     <expression language="XQuery">fn:format-date($input.dt_entrada,
+                 "[Y0001]-[M01]-[D01]")</expression>
+                  </operation>
+                  <link id="ktxh4a78" targetId="ktx5gs3t"/>
+               </assignment>
+               <assignment id="ktx5gs3t">
+                  <title>Assignment to dt_inicio_corte, dt_fim_corte</title>
+                  <operation source="formula" to="temp.dt_inicio_corte">
+                     <expression language="XQuery">let $date := xs:date($temp.dt_valida )
+
+let $one-day := xs:dayTimeDuration('P1D')
+let $one-month := xs:yearMonthDuration('P1M')
+let $firstDay := $date - (fn:day-from-date($date) - 1) * $one-day
+
+return $firstDay
+</expression>
+                  </operation>
+                  <operation source="formula" to="temp.dt_fim_corte">
+                     <expression language="XQuery">let $date := xs:date($temp.dt_valida )
+
+let $one-day := xs:dayTimeDuration('P1D')
+let $one-month := xs:yearMonthDuration('P1M')
+(: subtract days to get to the 1st of the month :)
+let $firstDay := $date - (fn:day-from-date($date) - 1) * $one-day
+(: get the 1st of the next month and then subtract one day :)
+let $lastDay  := $firstDay + $one-month - $one-day
+
+return $lastDay</expression>
+                  </operation>
+                  <link id="ktxh4a7m" targetId="ktx5gsrz"/>
+               </assignment>
+               <container id="ktx5gsrz" type="exclusive">
+                  <title>DATA É VALIDA?</title>
+                  <flow id="ktx5gss3">
+                     <subflow id="ktx5gstz">
+                        <title>p_get_cotacao_dolar</title>
+                        <subflowGUID>5Sak5EstI2PerRtYkOnlMp</subflowGUID>
+                        <subflowPath>p_get_cotacao_dolar-1</subflowPath>
+                        <runForEach>false</runForEach>
+                        <input>
+                           <parameter name="DateIni" source="constant" updatable="true">{$temp.dt_inicio_corte}</parameter>
+                           <parameter name="DateEnd" source="constant" updatable="true">{$temp.dt_fim_corte}</parameter>
+                        </input>
+                        <outputDef>
+                           <field name="out_cotacao_periodo" type="objectlist">
+                              <options>
+                                 <option name="referenceTo">cn-dolar-1:value</option>
+                                 <option hide="true" name="multiSelect">true</option>
+                                 <option name="required">false</option>
+                                 <option name="isCopy">true</option>
+                                 <option name="guid">6HMF9I33JxVksaplIs5Tsk</option>
+                              </options>
+                           </field>
+                           <field name="return_code" type="string">
+                              <options>
+                                 <option name="required">false</option>
+                              </options>
+                           </field>
+                           <field name="return_mesage" type="string">
+                              <options>
+                                 <option name="required">false</option>
+                              </options>
+                           </field>
+                        </outputDef>
+                        <link id="ktx5gsuq" targetId="ktx5gsup"/>
+                     </subflow>
+                     <subflow id="ktx5gsup">
+                        <title>p_send_data_to_gcs</title>
+                        <subflowGUID>6XVpmXwdks7kH7iOO3HeM8</subflowGUID>
+                        <subflowPath>p_send_data_to_gcs</subflowPath>
+                        <runForEach>false</runForEach>
+                        <input>
+                           <parameter name="in_json_send_data" source="formula" updatable="true">
+                              <expression language="XQuery">util:toJSON($output.out_cotacao_periodo )</expression>
+                           </parameter>
+                           <parameter name="in_bucket" source="constant" updatable="true">hvar-informatica-lab</parameter>
+                           <parameter name="in_folder" source="constant" updatable="true">DollarQuotationHistorico</parameter>
+                           <parameter name="in_file_name" source="formula" updatable="true">
+                              <expression language="XQuery">'cotacao_dolar' ||'__'||$temp.dt_inicio_corte||'__'||$temp.dt_fim_corte||'.json'</expression>
+                           </parameter>
+                        </input>
+                        <outputDef>
+                           <field name="out_mensage" type="reference">
+                              <options>
+                                 <option name="referenceTo">cn-google-cloud-storage-1:root_gcs</option>
+                                 <option name="required">false</option>
+                                 <option name="isCopy">true</option>
+                                 <option name="guid">3VycHfg7jCmfrIClQi0Ew5</option>
+                              </options>
+                           </field>
+                        </outputDef>
+                        <link id="ktxb9jm4" targetId="ktxb9jm3"/>
+                     </subflow>
+                     <assignment id="ktxb9jm3">
+                        <title>Assignment to dt_valida, dt_futura</title>
+                        <operation source="formula" to="temp.dt_valida">
+                           <expression language="XQuery">let $date :=  xs:date($temp.dt_inicio_corte) + xs:yearMonthDuration('P1M')
+
+let $one-day := xs:dayTimeDuration('P1D')
+let $one-month := xs:yearMonthDuration('P1M')
+let $firstDay := $date - (fn:day-from-date($date) - 1) * $one-day
+
+return $firstDay</expression>
+                        </operation>
+                        <operation source="formula" to="temp.dt_futura">
+                           <expression language="XQuery">data($temp.dt_valida) &gt; xs:date(fn:current-date()) 
+
+(: + xs:yearMonthDuration('P1M')
+
+como a api do banco nao retorna erro em caso de data maior, valoes aqui inseridos contemplam que a data atual de forte final seja 2 meses menor:)</expression>
+                        </operation>
+                        <link id="ktxb9jqb" targetId="ktxb9jqa"/>
+                     </assignment>
+                     <container id="ktxb9jqa" type="exclusive">
+                        <title>dt_fim_corte</title>
+                        <flow id="ktxb9jqd">
+                           <jumpTo id="ktxb9jti">
+                              <link id="ktxb9jtj" targetId="ktx5gs3t"/>
+                           </jumpTo>
+                        </flow>
+                        <flow id="ktxb9jqg">
+                           <end id="ktxb9js6"/>
+                        </flow>
+                        <link id="ktxb9jqc" targetId="ktxb9jqd" type="containerLink">
+                           <condition source="formula">
+                              <function name="string-equals">
+                                 <arg name="left">{$temp.dt_futura}</arg>
+                                 <arg name="right">false</arg>
+                              </function>
+                           </condition>
+                        </link>
+                        <link id="ktxb9jqf" targetId="ktxb9jqg" type="containerLink"/>
+                     </container>
+                  </flow>
+                  <flow id="ktx5gss6">
+                     <throw id="ktx5gsvi">
+                        <title>Throw 1</title>
+                        <throwInput>
+                           <parameter name="code" source="constant" updatable="true">400</parameter>
+                           <parameter name="detail" source="constant" updatable="true">data invalida</parameter>
+                           <parameter name="reason" source="constant" updatable="true">data nula ou inexistente</parameter>
+                        </throwInput>
+                     </throw>
+                  </flow>
+                  <link id="ktx5gss2" targetId="ktx5gss3" type="containerLink">
+                     <condition source="formula">
+                        <function name="contains">
+                           <arg name="left">{$temp.dt_valida}</arg>
+                           <arg name="right">-</arg>
+                        </function>
+                     </condition>
+                  </link>
+                  <link id="ktx5gss5" targetId="ktx5gss6" type="containerLink"/>
+               </container>
+            </flow>
+         </process>
+         <ns1:sample-data-sets xmlns:ns1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/sampleData.xsd">
+            <ns1:SampleData>
+               <ns1:Id>4a81e820-288e-4b8d-a4e7-f44267103301</ns1:Id>
+               <ns1:Name>teste_do_wal</ns1:Name>
+               <ns1:CreatedBy>walterson.quiais@latampartners-dev.org</ns1:CreatedBy>
+               <ns1:CreationDate>2021-09-23T18:52:37Z</ns1:CreationDate>
+               <ns1:ModifiedBy>walterson.quiais@latampartners-dev.org</ns1:ModifiedBy>
+               <ns1:ModifiedDate>2021-09-24T19:28:28Z</ns1:ModifiedDate>
+               <ns1:Data format="json">{
+	 "dt_entrada": "2010-01-01"
+}</ns1:Data>
+            </ns1:SampleData>
+         </ns1:sample-data-sets>
+      </types1:Entry>
+      <types1:GUID>6gZsggKBpaelAwgBfV4FO8</types1:GUID>
+      <types1:DisplayName>p_send_cotacao_to_gcs</types1:DisplayName>
+   </types1:Item>
+   <types1:CurrentServerDateTime>2022-02-02T20:28:02.205Z</types1:CurrentServerDateTime>
+</aetgt:getResponse>

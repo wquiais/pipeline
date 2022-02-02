@@ -1,0 +1,159 @@
+<aetgt:getResponse xmlns:aetgt="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd"
+                   xmlns:types1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd">
+   <types1:Item>
+      <types1:EntryId>MghDBr3rp3yD7ty-gt-1948753-2021-09-22T18:35:30.617Z::svc.xml</types1:EntryId>
+      <types1:Name>sc_google_cloud_storage-2</types1:Name>
+      <types1:ParentFlowIds>VZ6or3rp3yD7tyG-gt-1983271-2021-09-22T18:35:30.77Z::conn.xml</types1:ParentFlowIds>
+      <types1:MimeType>application/xml+businesssconnector</types1:MimeType>
+      <types1:Description>Service Connector for Google Cloud Storage</types1:Description>
+      <types1:AppliesTo/>
+      <types1:Tags/>
+      <types1:VersionLabel>1.0</types1:VersionLabel>
+      <types1:State>CURRENT</types1:State>
+      <types1:ProcessGroup/>
+      <types1:CreatedBy>walterson.quiais@latampartners-dev.org</types1:CreatedBy>
+      <types1:CreationDate>2021-09-22T18:35:31Z</types1:CreationDate>
+      <types1:ModifiedBy/>
+      <types1:PublicationStatus>published</types1:PublicationStatus>
+      <types1:PublishedBy>walterson.quiais@latampartners-dev.org</types1:PublishedBy>
+      <types1:PublicationDate>2021-09-22T18:47:09Z</types1:PublicationDate>
+      <types1:PublishedContributionId>project:/rt.connector/sc_google_cloud_storage_2/sc_google_cloud_storage_2_svcDef.xml</types1:PublishedContributionId>
+      <types1:AutosaveExists>false</types1:AutosaveExists>
+      <types1:Entry>
+         <businessConnector xmlns="http://schemas.informatica.com/socrates/data-services/2014/05/business-connector-model.xsd"
+                            agentOnly="true"
+                            debug="false"
+                            displayName="sc_google_cloud_storage"
+                            label=""
+                            name="sc_google_cloud_storage-2"
+                            uuid="0a82e089-ea02-4fd3-802c-b75e0058de17">
+            <description>Service Connector for Google Cloud Storage</description>
+            <tags/>
+            <connectionAttributes xmlns="http://schemas.informatica.com/appmodules/screenflow/2014/04/avosConnectors.xsd"/>
+            <actions>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       label="Post GCS"
+                       maxRedirects="100"
+                       name="Post GCS"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description>Insere dados no Google Cloud Storage</description>
+                  <input>
+                     <parameter name="Bucket"
+                                required="true"
+                                testWith="hvar-informatica-lab"
+                                type="string"/>
+                     <parameter name="Folder"
+                                required="true"
+                                testWith="DollarQuotation"
+                                type="string"/>
+                     <parameter name="Authorization"
+                                required="true"
+                                testWith="ya29.c.Kp8BEQiXEsJfM4OFsFi88GL2ssqTBlWNGZCOwzG7jBEgVrZBZOcUpQeTAMANNQVEhyJ22SX-5YwKQjKLjQYsOqFIk6c-YXymA5RxudLD9NprPTer1f1apK_90EKULqbcIHRdR2iNxVrWIEGkgzPWdHd7rXlSIkgd-4EMEVl7QUW7_W7LZqaLT3TGdYsrZ0d4Obeo0dDrY7jimL8g9q3z3lFc..............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................."
+                                type="string"/>
+                     <parameter name="Body" required="true" testWith="" type="string"/>
+                     <parameter name="Object"
+                                required="true"
+                                testWith="google_ads_campaing_intraday_2021-08-27T15:36:14.88.json"
+                                type="string"/>
+                  </input>
+                  <binding>
+                     <restSimpleBinding multiUsing="semicolonSeparated"
+                                        url="https://storage.googleapis.com/upload/storage/v1/b/{$Bucket}/o?uploadType=media&amp;amp;name={$Folder}/{$Object}"
+                                        verb="POST">
+                        <httpHeaders>
+                           <header name="Content-Type">application/json</header>
+                           <header name="Accept">application/json</header>
+                           <header name="Authorization">Bearer {$Authorization}</header>
+                        </httpHeaders>
+                        <body>{$Body}</body>
+                     </restSimpleBinding>
+                  </binding>
+                  <output>
+                     <field description=""
+                            name="return_google_cloud_storage"
+                            type="reference"
+                            xmlElement=".">
+                        <options>
+                           <option name="referenceTo">root_gcs</option>
+                        </options>
+                     </field>
+                     <field description=""
+                            name="return_status_code"
+                            responseStatusCode="true"
+                            type="string"/>
+                  </output>
+               </action>
+               <action category=""
+                       failOnError="true"
+                       forSearch="false"
+                       label="Get Token"
+                       maxRedirects="100"
+                       name="Get Token"
+                       preemptiveAuth="true"
+                       responseEncoding="">
+                  <description>Ação para receber o Google Token</description>
+                  <input/>
+                  <binding>
+                     <restSimpleBinding multiUsing="semicolonSeparated"
+                                        url="https://oauth2.googleapis.com/token"
+                                        verb="POST">
+                        <otherParams>
+                           <otherParam name="grant_type">urn:ietf:params:oauth:grant-type:jwt-bearer</otherParam>
+                           <otherParam name="assertion">{let $header := 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9'
+let $exp := fn:substring(fn:string(date:now()),0,11)
+let $clarim := util:base64EncodeUrl(concat('{"iss":"iics-693@informatica-cloud-270314.iam.gserviceaccount.com","scope":"https://www.googleapis.com/auth/devstorage.full_control","aud":"https://www.googleapis.com/oauth2/v4/token","exp":',concat(number($exp)+3600,',"iat":',$exp,"}")),'UTF-8')
+let $signWithCertificate := dsig:signWithCertificate(concat($header,'.',$clarim), '/opt/infaagent_dev/temp_informatica-cloud-270314-cdabd9fdc880.p12', 'notasecret', 'RSA', 'SHA256','Base64Url','','','PKCS12')
+return
+concat($header,'.',$clarim,'.',substring($signWithCertificate,0,343))}</otherParam>
+                        </otherParams>
+                        <body generateUsing="UnwrappedJSON" preserveJsonStringFormatting="true"/>
+                     </restSimpleBinding>
+                  </binding>
+                  <output>
+                     <field description=""
+                            name="gcs_return_token"
+                            property="access_token"
+                            type="string"/>
+                     <field description=""
+                            name="gcs_return_token_status"
+                            responseStatusCode="true"
+                            type="string"/>
+                  </output>
+               </action>
+            </actions>
+            <objects>
+               <processObject xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2011/06/avosHostEnvironment.xsd"
+                              isByCopy="true"
+                              name="root_gcs">
+                  <description>An automatically generated process object</description>
+                  <detail>
+                     <field name="generation" type="double"/>
+                     <field name="metageneration" type="int"/>
+                     <field name="kind" type="string"/>
+                     <field name="selfLink" type="string"/>
+                     <field name="mediaLink" type="string"/>
+                     <field name="bucket" type="string"/>
+                     <field name="storageClass" type="string"/>
+                     <field name="size" type="int"/>
+                     <field name="md5Hash" type="string"/>
+                     <field name="crc32c" type="string"/>
+                     <field name="timeStorageClassUpdated" type="string"/>
+                     <field name="name" type="string"/>
+                     <field name="etag" type="string"/>
+                     <field name="timeCreated" type="string"/>
+                     <field name="id" type="string"/>
+                     <field name="contentType" type="string"/>
+                     <field name="updated" type="string"/>
+                  </detail>
+               </processObject>
+            </objects>
+         </businessConnector>
+      </types1:Entry>
+      <types1:GUID>jd8CQsLySA1hnnsOnwmvMd</types1:GUID>
+      <types1:DisplayName>sc_google_cloud_storage</types1:DisplayName>
+   </types1:Item>
+   <types1:CurrentServerDateTime>2022-02-02T20:28:01.83Z</types1:CurrentServerDateTime>
+</aetgt:getResponse>

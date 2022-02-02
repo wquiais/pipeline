@@ -1,0 +1,184 @@
+<aetgt:getResponse xmlns:aetgt="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd"
+                   xmlns:types1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd">
+   <types1:Item>
+      <types1:EntryId>hOTGBdxPVIKchzt-gt-1037225-2021-09-22T18:35:30.128Z::pd.xml</types1:EntryId>
+      <types1:Name>p_get_cotacao_dolar-1</types1:Name>
+      <types1:ParentFlowIds>sqUlLnzYLnzYLnz-gt-5858119-2021-09-23T16:34:54.304Z::pd.xml</types1:ParentFlowIds>
+      <types1:MimeType>application/xml+process</types1:MimeType>
+      <types1:Description>Webserive que retorna a Cotação Dolar em Periodo</types1:Description>
+      <types1:AppliesTo/>
+      <types1:Tags>.agent:iics-hvar-agent</types1:Tags>
+      <types1:VersionLabel>1.0</types1:VersionLabel>
+      <types1:State>CURRENT</types1:State>
+      <types1:ProcessGroup/>
+      <types1:CreatedBy>walterson.quiais@latampartners-dev.org</types1:CreatedBy>
+      <types1:CreationDate>2021-09-22T18:35:30Z</types1:CreationDate>
+      <types1:ModifiedBy>walterson.quiais@latampartners-dev.org</types1:ModifiedBy>
+      <types1:ModificationDate>2021-09-24T18:32:11Z</types1:ModificationDate>
+      <types1:PublicationStatus>published</types1:PublicationStatus>
+      <types1:PublishedBy>walterson.quiais@latampartners-dev.org</types1:PublishedBy>
+      <types1:PublicationDate>2021-09-24T19:27:02Z</types1:PublicationDate>
+      <types1:PublishedContributionId>project:/spi.p_get_cotacao_dolar-1/p_get_cotacao_dolar-1.pd.xml</types1:PublishedContributionId>
+      <types1:AutosaveExists>false</types1:AutosaveExists>
+      <types1:Entry>
+         <process xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2010/10/avosScreenflow.xsd"
+                  xmlns:tfm="http://schemas.active-endpoints.com/appmodules/screenflow/2021/04/taskflowModel.xsd"
+                  xmlns:list="urn:activevos:spi:list:functions"
+                  displayName="p_get_cotacao_dolar"
+                  name="p_get_cotacao_dolar-1"
+                  overrideAPIName="false">
+            <parameterSet xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2021/04/taskflowModel.xsd"/>
+            <appliesTo/>
+            <description>Webserive que retorna a Cotação Dolar em Periodo</description>
+            <tags>.agent:iics-hvar-agent</tags>
+            <generator>Informatica Process Designer 11</generator>
+            <input>
+               <parameter description="" name="DateIni" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </parameter>
+               <parameter description="" name="DateEnd" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </parameter>
+            </input>
+            <output>
+               <field description="" name="out_cotacao_periodo" type="objectlist">
+                  <options>
+                     <option name="referenceTo">cn-dolar-1:value</option>
+                     <option hide="true" name="multiSelect">true</option>
+                     <option name="required">false</option>
+                     <option name="isCopy">true</option>
+                     <option name="guid">6HMF9I33JxVksaplIs5Tsk</option>
+                  </options>
+               </field>
+               <field description="" name="return_code" type="string">
+                  <options>
+                     <option name="required">false</option>
+                     <option name="initialvalue">0</option>
+                  </options>
+               </field>
+               <field description="" name="return_mesage" type="string">
+                  <options>
+                     <option name="required">false</option>
+                     <option name="initialvalue">sucesso</option>
+                  </options>
+               </field>
+            </output>
+            <tempFields>
+               <field description="" name="tmpDtInicio" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </field>
+               <field description="" name="tmpDtFim" type="string">
+                  <options>
+                     <option name="required">false</option>
+                  </options>
+               </field>
+            </tempFields>
+            <notes/>
+            <deployment suspendOnFault="false" tracingLevel="verbose">
+               <targetLocation>iics-hvar-agent</targetLocation>
+               <rest>
+                  <allowedGroups>
+                     <group>Group Service Consume</group>
+                     <group>Admin</group>
+                  </allowedGroups>
+               </rest>
+            </deployment>
+            <flow id="a">
+               <start id="b">
+                  <link id="ktt4yehx" targetId="ktt4yehw"/>
+               </start>
+               <assignment id="ktt4yehw">
+                  <title>ass_CONVERT_DATE</title>
+                  <operation source="formula" to="temp.tmpDtInicio">
+                     <expression language="XQuery">let $temp1 := tokenize($input.DateIni,'-') 
+
+return $temp1[2]||'-'||$temp1[3]||'-'||$temp1[1]</expression>
+                  </operation>
+                  <operation source="formula" to="temp.tmpDtFim">
+                     <expression language="XQuery">let $temp1 := tokenize($input.DateEnd,'-') 
+
+return $temp1[2]||'-'||$temp1[3]||'-'||$temp1[1]</expression>
+                  </operation>
+                  <link id="ktt4yehy" targetId="ktlx6tsk"/>
+               </assignment>
+               <eventContainer id="ktlx6tsk">
+                  <service id="ktlx6tr6">
+                     <title>Get Dolar Periodo</title>
+                     <serviceName>cn-dolar-1:Get Dolar Periodo</serviceName>
+                     <serviceGUID>6HMF9I33JxVksaplIs5Tsk</serviceGUID>
+                     <serviceInput>
+                        <parameter name="Data_Inicio" source="field" updatable="true">temp.tmpDtInicio</parameter>
+                        <parameter name="Data_Fim" source="field" updatable="true">temp.tmpDtFim</parameter>
+                     </serviceInput>
+                  </service>
+                  <flow id="ktlx6tsm">
+                     <assignment id="ktlx6tsu">
+                        <title>Assignment to out_cotacao_periodo</title>
+                        <operation source="field" to="output.out_cotacao_periodo">output.return_get_cotacao_periodo[1]/value</operation>
+                     </assignment>
+                     <link id="ktlx6tsn" targetId="ktlx6tsk" type="containerLink"/>
+                  </flow>
+                  <flow id="ktlx6tsp">
+                     <link id="ktlx6tsq" targetId="ktlx6tsk" type="containerLink"/>
+                  </flow>
+                  <link id="ktlx6tsl" targetId="ktlx6tsm" type="containerLink"/>
+                  <link id="ktlx6tst" targetId="c"/>
+                  <events>
+                     <catch faultField="faultInfo" id="ktlx6tsj" interrupting="true">
+                        <link id="ktlx6tso" targetId="ktlx6tsp" type="containerLink"/>
+                     </catch>
+                  </events>
+               </eventContainer>
+               <end id="c"/>
+            </flow>
+         </process>
+         <ns1:sample-data-sets xmlns:ns1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/sampleData.xsd">
+            <ns1:SampleData>
+               <ns1:Id>b901eb93-71a2-4f9d-9093-aa0423077989</ns1:Id>
+               <ns1:Name>In_Data</ns1:Name>
+               <ns1:CreatedBy>walterson.quiais@latampartners-dev.org</ns1:CreatedBy>
+               <ns1:CreationDate>2021-09-22T18:35:30Z</ns1:CreationDate>
+               <ns1:ModifiedBy>walterson.quiais@latampartners-dev.org</ns1:ModifiedBy>
+               <ns1:ModifiedDate>2021-09-22T18:35:30Z</ns1:ModifiedDate>
+               <ns1:Data format="json">{
+	 "DateIni": "2021-01-05",
+	 "DateEnd": "2021-01-31"
+}</ns1:Data>
+            </ns1:SampleData>
+            <ns1:SampleData>
+               <ns1:Id>861ea4f8-b8c7-4d7c-8bd2-542f7231425e</ns1:Id>
+               <ns1:Name>in_data2</ns1:Name>
+               <ns1:CreatedBy>walterson.quiais@latampartners-dev.org</ns1:CreatedBy>
+               <ns1:CreationDate>2021-09-22T18:35:30Z</ns1:CreationDate>
+               <ns1:ModifiedBy>walterson.quiais@latampartners-dev.org</ns1:ModifiedBy>
+               <ns1:ModifiedDate>2021-09-22T18:35:30Z</ns1:ModifiedDate>
+               <ns1:Data format="json">{
+	 "DateIni": "01-01-2021",
+	 "DateEnd": "02-01-2021"
+}</ns1:Data>
+            </ns1:SampleData>
+            <ns1:SampleData>
+               <ns1:Id>1b6ebde9-3395-42a7-ab6a-2bab347200cc</ns1:Id>
+               <ns1:Name>valid_scenario</ns1:Name>
+               <ns1:CreatedBy>walterson.quiais@latampartners-dev.org</ns1:CreatedBy>
+               <ns1:CreationDate>2021-09-22T18:35:30Z</ns1:CreationDate>
+               <ns1:ModifiedBy>walterson.quiais@latampartners-dev.org</ns1:ModifiedBy>
+               <ns1:ModifiedDate>2021-09-22T18:35:30Z</ns1:ModifiedDate>
+               <ns1:Data format="json">{
+	 "DateIni": "25-01-2021",
+	 "DateEnd": "01-02-2021"
+}</ns1:Data>
+            </ns1:SampleData>
+         </ns1:sample-data-sets>
+      </types1:Entry>
+      <types1:GUID>5Sak5EstI2PerRtYkOnlMp</types1:GUID>
+      <types1:DisplayName>p_get_cotacao_dolar</types1:DisplayName>
+   </types1:Item>
+   <types1:CurrentServerDateTime>2022-02-02T20:28:02.106Z</types1:CurrentServerDateTime>
+</aetgt:getResponse>

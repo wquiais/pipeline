@@ -1,0 +1,24 @@
+{
+  "objectInfo" : {
+    "id" : "fsiysb2ZRS1bpLLH1m3Ikw",
+    "name" : "tf_send_email",
+    "type" : "TASKFLOW",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "9Ei4tciSrZMSPfX-gt-1676061-2021-09-22T18:35:31.982Z::tf.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "Description",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    }
+  },
+  "dataFileExtension" : "xml",
+  "objectRefs" : [ ]
+}
