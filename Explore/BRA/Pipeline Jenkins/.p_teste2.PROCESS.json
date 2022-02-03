@@ -1,0 +1,24 @@
+[
+   {
+      "objectGuid": "3W8FQElCvo1cHqRcCLwDgn",
+      "objectName": "p_teste2",
+      "objectType": "PROCESS",
+      "path": "/Explore/BRA/Pipeline Jenkins",
+      "metadata": {
+         "additionalInfo": {
+            "contentType": "application/json; charset=utf-8",
+            "description": "",
+            "documentState": "VALID"
+         },
+         "contextAttributes": null,
+         "modelVersion": {
+            "major": 1,
+            "minor": 0
+         },
+         "objectRefs": [],
+         "repoInfo": {
+            "repoHandle": "ECPwLdqcgm8lnCm-gt-71636136-2022-02-03T17:33:41.484Z::pd.xml"
+         }
+      }
+   }
+]
