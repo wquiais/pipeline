@@ -12,8 +12,12 @@
       <types1:ProcessGroup/>
       <types1:CreatedBy>walterson.quiais@latampartners-dev.org</types1:CreatedBy>
       <types1:CreationDate>2022-02-03T13:57:27Z</types1:CreationDate>
-      <types1:ModifiedBy/>
-      <types1:PublicationStatus>unpublished</types1:PublicationStatus>
+      <types1:ModifiedBy>walterson.quiais@latampartners-dev.org</types1:ModifiedBy>
+      <types1:ModificationDate>2022-02-03T19:05:12Z</types1:ModificationDate>
+      <types1:PublicationStatus>published</types1:PublicationStatus>
+      <types1:PublishedBy>walterson.quiais@latampartners-dev.org</types1:PublishedBy>
+      <types1:PublicationDate>2022-02-03T19:05:29Z</types1:PublicationDate>
+      <types1:PublishedContributionId>project:/rt.connection/cn-teste/cn-teste.conn.xml</types1:PublishedContributionId>
       <types1:AutosaveExists>false</types1:AutosaveExists>
       <types1:Entry>
          <connection xmlns="http://schemas.informatica.com/socrates/data-services/2014/04/avosConnections.xsd"
@@ -23,21 +27,23 @@
             <description/>
             <tags/>
             <agent/>
-            <attributes/>
-            <javaConnector xmlns="http://schemas.informatica.com/appmodules/screenflow/2014/04/avosConnectors.xsd"
-                           agentOnly="true"
-                           plugin="Camel"
-                           supportsConnectionTest="true"
-                           supportsDataPreview="false"
-                           supportsOData="false"
-                           type="File"
-                           uuid="ac000300-d9fe-11e4-8830-0800200c9a66">
-               <description>Provides connections to file monitoring brokers.</description>
-            </javaConnector>
+            <attributes>
+               <attribute encrypted="false" name="url" value="https://teste.com"/>
+            </attributes>
+            <businessConnector xmlns="http://schemas.informatica.com/appmodules/screenflow/2014/04/avosConnectors.xsd"
+                               agentOnly="false"
+                               connectorPath="project:/rt.connector/sc_dolar/sc_dolar_svcDef.xml"
+                               guid="axeUKIk086tbCW9EZ52EcO"
+                               name="sc_dolar"
+                               supportsConnectionTest="false"
+                               uuid="3e7a4b58-f3f8-4df9-bad0-59971c1d8a18">
+               <description>Service connector reponsavel pelos acessos aos metodos da api de DOLAR do Governo.
+https://olinda.bcb.gov.br</description>
+            </businessConnector>
          </connection>
       </types1:Entry>
       <types1:GUID>8NdIfgKfGHzlBHVEO1VzGV</types1:GUID>
       <types1:DisplayName>cn-teste</types1:DisplayName>
    </types1:Item>
-   <types1:CurrentServerDateTime>2022-02-03T18:48:00.773Z</types1:CurrentServerDateTime>
+   <types1:CurrentServerDateTime>2022-02-03T19:06:53.095Z</types1:CurrentServerDateTime>
 </aetgt:getResponse>

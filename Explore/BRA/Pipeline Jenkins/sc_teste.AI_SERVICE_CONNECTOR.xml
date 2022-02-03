@@ -12,8 +12,12 @@
       <types1:ProcessGroup/>
       <types1:CreatedBy>walterson.quiais@latampartners-dev.org</types1:CreatedBy>
       <types1:CreationDate>2022-02-03T13:57:46Z</types1:CreationDate>
-      <types1:ModifiedBy/>
-      <types1:PublicationStatus>unpublished</types1:PublicationStatus>
+      <types1:ModifiedBy>walterson.quiais@latampartners-dev.org</types1:ModifiedBy>
+      <types1:ModificationDate>2022-02-03T19:04:24Z</types1:ModificationDate>
+      <types1:PublicationStatus>published</types1:PublicationStatus>
+      <types1:PublishedBy>walterson.quiais@latampartners-dev.org</types1:PublishedBy>
+      <types1:PublicationDate>2022-02-03T19:04:34Z</types1:PublicationDate>
+      <types1:PublishedContributionId>project:/rt.connector/sc_teste/sc_teste_svcDef.xml</types1:PublishedContributionId>
       <types1:AutosaveExists>false</types1:AutosaveExists>
       <types1:Entry>
          <businessConnector xmlns="http://schemas.informatica.com/socrates/data-services/2014/05/business-connector-model.xsd"
@@ -30,17 +34,17 @@
                <action category=""
                        failOnError="true"
                        forSearch="false"
-                       label="Untitled Action"
+                       label="teste"
                        maxRedirects="100"
-                       name="Untitled Action"
+                       name="teste"
                        preemptiveAuth="true"
                        responseEncoding="">
                   <description/>
                   <input>
-                     <parameter name="" required="false" testWith="" type="string"/>
+                     <parameter name="teste" required="false" testWith="" type="string"/>
                   </input>
                   <binding>
-                     <restSimpleBinding multiUsing="semicolonSeparated" url="" verb="GET"/>
+                     <restSimpleBinding multiUsing="semicolonSeparated" url="https://teste.com" verb="GET"/>
                   </binding>
                   <output/>
                </action>
@@ -51,5 +55,5 @@
       <types1:GUID>0Qbkw7g1BG1kyiEl1wrTUg</types1:GUID>
       <types1:DisplayName>sc_teste</types1:DisplayName>
    </types1:Item>
-   <types1:CurrentServerDateTime>2022-02-03T18:48:00.748Z</types1:CurrentServerDateTime>
+   <types1:CurrentServerDateTime>2022-02-03T19:06:52.678Z</types1:CurrentServerDateTime>
 </aetgt:getResponse>
