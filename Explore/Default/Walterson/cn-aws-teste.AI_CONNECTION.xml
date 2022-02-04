@@ -1,0 +1,51 @@
+<aetgt:getResponse xmlns:aetgt="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd"
+                   xmlns:types1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd">
+   <types1:Item>
+      <types1:EntryId>rHnJKoJBUhtycot-gt-69726702-2022-01-07T16:46:03.227Z::conn.xml</types1:EntryId>
+      <types1:Name>cn-aws-teste</types1:Name>
+      <types1:MimeType>application/xml+connection</types1:MimeType>
+      <types1:Description>teste</types1:Description>
+      <types1:AppliesTo/>
+      <types1:Tags/>
+      <types1:VersionLabel>1.0</types1:VersionLabel>
+      <types1:State>CURRENT</types1:State>
+      <types1:ProcessGroup/>
+      <types1:CreatedBy>walterson.quiais@latampartners-dev.org</types1:CreatedBy>
+      <types1:CreationDate>2022-01-07T16:46:03Z</types1:CreationDate>
+      <types1:ModifiedBy>walterson.quiais@latampartners-dev.org</types1:ModifiedBy>
+      <types1:ModificationDate>2022-01-07T16:46:54Z</types1:ModificationDate>
+      <types1:PublicationStatus>published</types1:PublicationStatus>
+      <types1:PublishedBy>walterson.quiais@latampartners-dev.org</types1:PublishedBy>
+      <types1:PublicationDate>2022-01-07T16:47:05Z</types1:PublicationDate>
+      <types1:PublishedContributionId>project:/rt.connection/cn-aws-teste/cn-aws-teste.conn.xml</types1:PublishedContributionId>
+      <types1:AutosaveExists>false</types1:AutosaveExists>
+      <types1:Entry>
+         <connection xmlns="http://schemas.informatica.com/socrates/data-services/2014/04/avosConnections.xsd"
+                     displayName="cn-aws-teste"
+                     label="cn-aws-teste"
+                     name="cn-aws-teste">
+            <description>teste</description>
+            <tags/>
+            <agent/>
+            <attributes>
+               <attribute encrypted="false"
+                          name="SNS Endpoint"
+                          value="https://sns.us-east-1.amazonaws.com"/>
+               <attribute encrypted="true" name="Access Key" value=""/>
+               <attribute encrypted="true" name="Secret Key" value=""/>
+            </attributes>
+            <businessConnector xmlns="http://schemas.informatica.com/appmodules/screenflow/2014/04/avosConnectors.xsd"
+                               agentOnly="false"
+                               connectorPath="project:/rt.connector/Amazon_SNS/Amazon_SNS_svcDef.xml"
+                               name="Amazon_SNS"
+                               supportsConnectionTest="false"
+                               uuid="7e7dfed0-3a12-4852-8d69-dc8280e45399">
+               <description>SNSConnector provides the actions to interact with SNS services.</description>
+            </businessConnector>
+         </connection>
+      </types1:Entry>
+      <types1:GUID>gOHnfNBuWkMll3BFznNVgx</types1:GUID>
+      <types1:DisplayName>cn-aws-teste</types1:DisplayName>
+   </types1:Item>
+   <types1:CurrentServerDateTime>2022-02-04T15:06:41.609Z</types1:CurrentServerDateTime>
+</aetgt:getResponse>
