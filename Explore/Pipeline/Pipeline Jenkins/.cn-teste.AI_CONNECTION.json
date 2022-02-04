@@ -1,0 +1,48 @@
+[
+   {
+      "objectGuid": "8NdIfgKfGHzlBHVEO1VzGV",
+      "objectName": "cn-teste",
+      "objectType": "AI_CONNECTION",
+      "path": "/Explore/Pipeline/Pipeline Jenkins",
+      "metadata": {
+         "additionalInfo": {
+            "contentType": "application/json; charset=utf-8",
+            "description": "",
+            "documentState": "VALID"
+         },
+         "contextAttributes": null,
+         "modelVersion": {
+            "major": 1,
+            "minor": 0
+         },
+         "objectRefs": [
+            "0Qbkw7g1BG1kyiEl1wrTUg"
+         ],
+         "repoInfo": {
+            "repoHandle": "657V5x8iaaabbeJ-gt-70542041-2022-02-03T13:57:26.921Z::conn.xml"
+         }
+      }
+   },
+   {
+      "objectGuid": "0Qbkw7g1BG1kyiEl1wrTUg",
+      "objectName": "sc_teste",
+      "objectType": "AI_SERVICE_CONNECTOR",
+      "path": "/Explore/Pipeline/Pipeline Jenkins",
+      "metadata": {
+         "additionalInfo": {
+            "contentType": "application/json; charset=utf-8",
+            "description": "",
+            "documentState": "VALID"
+         },
+         "contextAttributes": null,
+         "modelVersion": {
+            "major": 1,
+            "minor": 0
+         },
+         "objectRefs": [],
+         "repoInfo": {
+            "repoHandle": "xNVMTonQYWeIssj-gt-36934281-2022-02-03T13:57:46.382Z::svc.xml"
+         }
+      }
+   }
+]
