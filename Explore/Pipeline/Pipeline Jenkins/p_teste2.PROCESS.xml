@@ -13,10 +13,10 @@
       <types1:CreatedBy>walterson.quiais@latampartners-dev.org</types1:CreatedBy>
       <types1:CreationDate>2022-02-03T17:33:41Z</types1:CreationDate>
       <types1:ModifiedBy>walterson.quiais@latampartners-dev.org</types1:ModifiedBy>
-      <types1:ModificationDate>2022-02-04T20:17:47Z</types1:ModificationDate>
+      <types1:ModificationDate>2022-02-07T13:28:02Z</types1:ModificationDate>
       <types1:PublicationStatus>published</types1:PublicationStatus>
       <types1:PublishedBy>walterson.quiais@latampartners-dev.org</types1:PublishedBy>
-      <types1:PublicationDate>2022-02-04T20:17:52Z</types1:PublicationDate>
+      <types1:PublicationDate>2022-02-07T13:28:07Z</types1:PublicationDate>
       <types1:PublishedContributionId>project:/spi.p_teste2/p_teste2.pd.xml</types1:PublishedContributionId>
       <types1:AutosaveExists>false</types1:AutosaveExists>
       <types1:Entry>
@@ -48,7 +48,7 @@
                </start>
                <assignment id="kz8umlmt">
                   <title>Assignment to tmp_teste</title>
-                  <operation source="constant" to="temp.tmp_teste">1</operation>
+                  <operation source="constant" to="temp.tmp_teste">2</operation>
                   <link id="kz8umlmv" targetId="c"/>
                </assignment>
                <end id="c"/>
@@ -58,5 +58,5 @@
       <types1:GUID>3W8FQElCvo1cHqRcCLwDgn</types1:GUID>
       <types1:DisplayName>p_teste2</types1:DisplayName>
    </types1:Item>
-   <types1:CurrentServerDateTime>2022-02-07T13:24:50.359Z</types1:CurrentServerDateTime>
+   <types1:CurrentServerDateTime>2022-02-07T13:29:03.654Z</types1:CurrentServerDateTime>
 </aetgt:getResponse>
