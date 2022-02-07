@@ -1,0 +1,24 @@
+{
+  "objectInfo" : {
+    "id" : "5hWwjyH5aIRcNCYHaxaYWe",
+    "name" : "p_teste3",
+    "type" : "PROCESS",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "4NPwLdqcgm8lnCm-gt-81846022-2022-02-07T12:44:59.892Z::pd.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    }
+  },
+  "dataFileExtension" : "xml",
+  "objectRefs" : [ ]
+}
