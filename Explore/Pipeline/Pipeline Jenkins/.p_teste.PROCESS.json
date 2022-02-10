@@ -1,24 +1,24 @@
-{
-  "objectInfo" : {
-    "id" : "9ulwjNBMJqSbMUg2l0PQEQ",
-    "name" : "p_teste",
-    "type" : "PROCESS",
-    "metadata" : {
-      "modelVersion" : {
-        "major" : 1,
-        "minor" : 0
-      },
-      "repoInfo" : {
-        "repoHandle" : "8beC3Q6gaabclvA-gt-70929728-2022-02-03T13:56:46.964Z::pd.xml"
-      },
-      "contextAttributes" : null,
-      "additionalInfo" : {
-        "description" : "",
-        "contentType" : "application/json; charset=utf-8",
-        "documentState" : "VALID"
+[
+   {
+      "objectGuid": "9ulwjNBMJqSbMUg2l0PQEQ",
+      "objectName": "p_teste",
+      "objectType": "PROCESS",
+      "path": "/Explore/Pipeline/Pipeline Jenkins",
+      "metadata": {
+         "additionalInfo": {
+            "contentType": "application/json; charset=utf-8",
+            "description": "",
+            "documentState": "VALID"
+         },
+         "contextAttributes": null,
+         "modelVersion": {
+            "major": 1,
+            "minor": 0
+         },
+         "objectRefs": [],
+         "repoInfo": {
+            "repoHandle": "8beC3Q6gaabclvA-gt-70929728-2022-02-03T13:56:46.964Z::pd.xml"
+         }
       }
-    }
-  },
-  "dataFileExtension" : "xml",
-  "objectRefs" : [ ]
-}
+   }
+]
