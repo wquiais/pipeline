@@ -1,0 +1,46 @@
+<aetgt:getResponse xmlns:aetgt="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd"
+                   xmlns:types1="http://schemas.active-endpoints.com/appmodules/repository/2010/10/avrepository.xsd">
+   <types1:Item>
+      <types1:EntryId>657V5x8iaaabbeJ-gt-70542041-2022-02-03T13:57:26.921Z::conn.xml</types1:EntryId>
+      <types1:Name>cn-teste</types1:Name>
+      <types1:MimeType>application/xml+connection</types1:MimeType>
+      <types1:Description/>
+      <types1:AppliesTo/>
+      <types1:Tags/>
+      <types1:VersionLabel>1.0</types1:VersionLabel>
+      <types1:State>CURRENT</types1:State>
+      <types1:ProcessGroup/>
+      <types1:CreatedBy>walterson.quiais@latampartners-dev.org</types1:CreatedBy>
+      <types1:CreationDate>2022-02-03T13:57:27Z</types1:CreationDate>
+      <types1:ModifiedBy>walterson.quiais@latampartners-dev.org</types1:ModifiedBy>
+      <types1:ModificationDate>2022-02-04T12:08:01Z</types1:ModificationDate>
+      <types1:PublicationStatus>published</types1:PublicationStatus>
+      <types1:PublishedBy>walterson.quiais@latampartners-dev.org</types1:PublishedBy>
+      <types1:PublicationDate>2022-02-04T12:09:05Z</types1:PublicationDate>
+      <types1:PublishedContributionId>project:/rt.connection/cn-teste/cn-teste.conn.xml</types1:PublishedContributionId>
+      <types1:AutosaveExists>false</types1:AutosaveExists>
+      <types1:Entry>
+         <connection xmlns="http://schemas.informatica.com/socrates/data-services/2014/04/avosConnections.xsd"
+                     displayName="cn-teste"
+                     label="cn-teste"
+                     name="cn-teste">
+            <description/>
+            <tags/>
+            <agent/>
+            <attributes/>
+            <businessConnector xmlns="http://schemas.informatica.com/appmodules/screenflow/2014/04/avosConnectors.xsd"
+                               agentOnly="false"
+                               connectorPath="project:/rt.connector/sc_teste/sc_teste_svcDef.xml"
+                               guid="0Qbkw7g1BG1kyiEl1wrTUg"
+                               name="sc_teste"
+                               supportsConnectionTest="false"
+                               uuid="444ecd74-ab54-484d-9539-0714a8bde5e7">
+               <description/>
+            </businessConnector>
+         </connection>
+      </types1:Entry>
+      <types1:GUID>8NdIfgKfGHzlBHVEO1VzGV</types1:GUID>
+      <types1:DisplayName>cn-teste</types1:DisplayName>
+   </types1:Item>
+   <types1:CurrentServerDateTime>2022-02-10T13:21:59.928Z</types1:CurrentServerDateTime>
+</aetgt:getResponse>
