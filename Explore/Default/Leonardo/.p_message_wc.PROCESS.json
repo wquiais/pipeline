@@ -1,0 +1,24 @@
+{
+  "objectInfo" : {
+    "id" : "21ns8h9gpaVjLPh1luw3ID",
+    "name" : "p_message_wc",
+    "type" : "PROCESS",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "aaa-gt-11023026-2022-06-05T00:26:55.004Z::pd.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    }
+  },
+  "dataFileExtension" : "xml",
+  "objectRefs" : [ ]
+}
